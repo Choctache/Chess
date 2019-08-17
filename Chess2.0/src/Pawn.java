@@ -1,50 +1,30 @@
 
 public class Pawn extends Piece {
 
-	private boolean isFirstMove;
+
 
 	public Pawn(boolean isWhite) {
 		super(isWhite);
-		this.isFirstMove = true;
-		// TODO Auto-generated constructor stub
 	}
 
 	public boolean isMoveLegal(Coordinate old, Coordinate c) {
 
-		if (CoordinateController.isStraightX(old, c)) {
-			if (!isWhite) {
-				if (old.getY() + 1 == c.getY() && board.getPiece(c) == null) {
-
-				}
-			} else {
-				if (c.getY() + 1 == old.getY() && board.getPiece(c) == null) {
-
+		int direction = -1;
+		if (!isWhite) {
+			direction = 1;
+		}
+		if (CoordinateController.isStraightX(old, c) && board.getPiece(c) == null) {
+			if (!(old.getY() + direction == c.getY())) {
+				if (!(isFirstMove && old.getY() + 2 * direction == c.getY())) {
+					return false;
 				}
 			}
 		} else if (CoordinateController.isDiagonal(old, c) && board.getPiece(c) != null) {
-			if (!isWhite) {
-				if (old.getX() + 1 == c.getX() && old.getY() + 1 == c.getY()) {
-
-				} else if (old.getX() - 1 == c.getX() && old.getY() + 1 == c.getY()) {
-
-				} else {
-					return false;
-				}
-
-			} else {
-
-				if (old.getX() - 1 == c.getX() && old.getY() - 1 == c.getY()) {
-
-				} else if (old.getX() + 1 == c.getX() && old.getY() - 1 == c.getY()) {
-
-				} else {
-					return false;
-				}
-
+			if (!((old.getX() + direction == c.getX() || old.getX() - direction == c.getX())
+					&& old.getY() + direction == c.getY())) {
+				return false;
 			}
-
 		}
 		return true;
-
 	}
 }

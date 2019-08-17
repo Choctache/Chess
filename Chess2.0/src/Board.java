@@ -16,6 +16,9 @@ public class Board {
 			Piece p = board[old.getX()][old.getY()];
 			if (p != null) {
 				if (p.isMoveLegal(old, c)) {
+					if(p.isFirstMove()) {
+						p.setFirstMove(false);
+					}
 					this.setPiece(old, null);
 					this.setPiece(c, p);
 					System.out.println("Piece has been moved.");

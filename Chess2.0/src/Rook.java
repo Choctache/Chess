@@ -3,11 +3,8 @@ public class Rook extends Piece{
 
 	public Rook(boolean isWhite) {
 		super(isWhite);
-		// TODO Auto-generated constructor stub
 	}
 
-
-	
 	public boolean isMoveLegal(Coordinate old,Coordinate c) {
 		if(CoordinateController.isStraightX(old, c)) {
 			int startY = c.getY();
@@ -18,7 +15,6 @@ public class Rook extends Piece{
 			}
 			for(int i = startY; i <=  endY; i++) {
 				if(board.getPiece(new Coordinate(c.getX(), i)) != null) {
-					//throw new IllegalArgumentException("Obstacle in the way");
 					return false;
 					
 				}
@@ -34,14 +30,11 @@ public class Rook extends Piece{
 			}
 			for(int i = startX; i <=  endX; i++) {
 				if(board.getPiece(new Coordinate(i, c.getY())) != null) {
-					//throw new IllegalArgumentException("Obstacle in the way");
-					return false;
-					
+					return false;				
 				}
 			}
 		}
 		else {
-			//throw new IllegalArgumentException("Rook can only move vertical or horizontal!");
 			return false;
 		}
 		return true;
