@@ -1,3 +1,5 @@
+package controller;
+import model.Coordinate;
 
 public class CoordinateController {
 	
@@ -17,7 +19,7 @@ public class CoordinateController {
 	}
 	
 	public static boolean isDiagonal(Coordinate old, Coordinate c) {
-		if(old.getX()-c.getX() == old.getY()-c.getY()) {
+		if(Math.abs(old.getX()-c.getX()) == Math.abs(old.getY()-c.getY())) {
 			return true;
 		}
 		return false;

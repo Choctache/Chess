@@ -1,3 +1,4 @@
+package model;
 
 public class King extends Piece {
 	
@@ -10,7 +11,9 @@ public class King extends Piece {
 	@Override
 	public boolean isMoveLegal(Coordinate old, Coordinate c) {
 
-		if ((Math.abs(old.getX() - c.getX()) == 1) || (Math.abs(old.getY() - c.getY()) == 1)) {
+		if (((Math.abs(old.getX() - c.getX()) == 1) && (old.getY() - c.getY() == 0)) || 
+				((old.getX() - c.getX() == 0) && (Math.abs(old.getY() - c.getY()) == 1)) ||
+				((Math.abs(old.getX() - c.getX()) == 1) && (Math.abs(old.getY() - c.getY()) == 1)) ) {
 			Queen possibleMoves = new Queen(this.isWhite);
 			return possibleMoves.isMoveLegal(old, c);
 		}

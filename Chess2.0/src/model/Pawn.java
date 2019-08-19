@@ -1,3 +1,6 @@
+package model;
+
+import controller.CoordinateController;
 
 public class Pawn extends Piece {
 

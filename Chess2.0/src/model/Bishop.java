@@ -1,3 +1,6 @@
+package model;
+
+import controller.CoordinateController;
 
 public class Bishop extends Piece {
 
@@ -17,15 +20,15 @@ public class Bishop extends Piece {
 			if (old.getY() > c.getY()) {
 				directionY = -1;
 			}
-			for (int i = old.getX() + directionX; i != c.getX(); i += directionX) {
-				for (int j = old.getY() + directionY; j != c.getY(); j += directionY) {
-					if (board.getPiece(new Coordinate(i, j)) != null) {
-						return false;
-					}
+			int distanceBetween = Math.abs(old.getX() - c.getX());
+			for (int i = 1; i <= distanceBetween; i++) {
+				if (board.getPiece(new Coordinate(old.getX() + directionX, old.getY() + directionY)) != null) {
+					return false;
 				}
 			}
+			return true;
 		}
-		return true;
+		return false;
 
 	}
 
